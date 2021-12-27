@@ -14,7 +14,7 @@
     <div id="card-container" class="row">
         @foreach ($events as $event)
             <div class="card col-md-3">
-                <img src="/img/event_placeholder.jpg" alt="{{$event->title}}">
+                <img src="/img/events/{{$event->image}}" alt="{{$event->title}}">
                 <div class="card-body">
                     <p class="card-date">10/09/2021</p>
                     <h5 class="card-title">{{$event->title}}</h5>
@@ -22,7 +22,11 @@
                     <a href="" class="btn btn-primary">Saber Mais</a>
                 </div>
             </div>
-            
+            @if ($loop->iteration%4==0)
+                </div>
+                <div id="card-container" class="row">
+                        
+            @endif            
         @endforeach
     </div>
 </div>
