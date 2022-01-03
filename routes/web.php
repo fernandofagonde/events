@@ -15,10 +15,10 @@ use App\Http\Controllers\EventController;
 */
 
 Route::get('/', [EventController::class, 'index']);
-Route::get('/events/create', [EventController::class, 'create']);
+Route::get('/events/create', [EventController::class, 'create'])->middleware('auth');
 Route::get('/events/{id}', [EventController::class, 'show']);
 Route::get('/events/list', [EventController::class, 'list']);
-Route::post('/events',[EventController::class, 'store']);
+Route::post('/events',[EventController::class, 'store'])->middleware('auth');
 
 Route::get('/contato', function () {
     return view('contact');
