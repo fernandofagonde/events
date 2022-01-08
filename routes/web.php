@@ -19,10 +19,9 @@ Route::get('/events/create', [EventController::class, 'create'])->middleware('au
 Route::get('/events/{id}', [EventController::class, 'show']);
 Route::get('/events/list', [EventController::class, 'list']);
 Route::post('/events',[EventController::class, 'store'])->middleware('auth');
+Route::delete('/events/{id}', [Eventcontroller::class, 'destroy']);
 
 Route::get('/contato', function () {
     return view('contact');
 });
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::get('/dashboard', [EventController::class,'dashboard'])->middleware('auth');
