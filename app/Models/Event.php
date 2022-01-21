@@ -17,7 +17,7 @@ class Event extends Model
 
     protected $guarded = [];
 
-    public function user(){
+    public function user(){/*Event owner*/
         return $this->belongsTo('App\Models\User');
     }
 
