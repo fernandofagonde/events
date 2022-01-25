@@ -108,7 +108,15 @@ class EventController extends Controller
 
     public function destroy($id) {
 
-        Event::findOrFail($id)->delete();
+        $user = auth()->user();
+
+        $event = Event::findOrFail($id);
+
+        if($user->id != $event->user_id) {
+            return redirect('/dashboard')->with('msg', 'Acesso negado!');
+        }
+
+        $event->delete($id);
 
         return redirect('/dashboard')->with('msg', 'Evento excluído com sucesso!');
 
@@ -121,7 +129,7 @@ class EventController extends Controller
         $event = Event::findOrFail($id);
 
         if($user->id != $event->user_id) {
-            return redirect('/dashboard');
+            return redirect('/dashboard')->with('msg', 'Acesso negado!');
         }
 
         return view('events.edit', ['event' => $event]);
